@@ -12,7 +12,7 @@ GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
 
 # Latest Gemini models with their capabilities and priority (lower is higher)
 AVAILABLE_MODELS: Dict[str, Dict[str, Any]] = {
-    "models/gemini-2.5-pro-preview-03-25": { # Corrected model name
+    "models/gemini-2.5-pro-preview-06-05": { # Corrected model name
         "name": "Gemini 2.5 Pro Preview",
         "description": "Next-generation model with highest quota and latest features",
         "temperature_range": (0.0, 2.0),
@@ -22,8 +22,8 @@ AVAILABLE_MODELS: Dict[str, Dict[str, Any]] = {
         "release": "2025-03",
         "priority": 1 # Highest priority
     },
-    "models/gemini-2.0-flash-exp": {
-        "name": "Gemini 2.0 Flash (Experimental)",
+    "models/gemini-2.5-flash-preview-05-20": {
+        "name": "Gemini 2.5 Flash (Experimental)",
         "description": "Latest multimodal model with enhanced reasoning and flash speed",
         "temperature_range": (0.0, 2.0),
         "max_tokens": 8192,

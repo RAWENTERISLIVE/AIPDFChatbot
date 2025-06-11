@@ -168,23 +168,6 @@ All required packages installed:
 - `pytesseract`: OCR support
 - `pdf2image`: PDF processing
 
-## 🎯 Recommended Usage
-
-### For Maximum Precision
-- **Model**: `gemini-exp-1206`
-- **Temperature**: 0.1
-- **Use Case**: Critical analysis, fact verification
-
-### For Fastest Response
-- **Model**: `gemini-2.0-flash-exp`
-- **Temperature**: 0.2
-- **Use Case**: Quick queries, general questions
-
-### For Production Stability
-- **Model**: `gemini-1.5-pro`
-- **Temperature**: 0.1
-- **Use Case**: Reliable production deployment
-
 ## 🚀 Getting Started
 
 1. **Start Server**:

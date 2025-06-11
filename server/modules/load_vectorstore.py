@@ -39,7 +39,7 @@ def load_vectorstore(uploaded_files):
         raise ValueError("No text was extracted from the documents")
 
     embeddings=GoogleGenerativeAIEmbeddings(
-        model="models/embedding-001",
+        model="models/gemini-embedding-exp-03-07",
         google_api_key=os.environ.get("GEMINI_API_KEY")
     )
 

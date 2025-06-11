@@ -1,7 +1,11 @@
-# 🧠 Modular RAG PDF Chatbot with FastAPI, ChromaDB & Streamlit
+# 🧠 Modular### 🔥 Latest Features
+- **Latest Gemini Models**: `models/gemini-2.5-pro-preview-03-25` (Top Priority), Gemini 2.0 Flash, Latest 1.5 Pro/Flash, and more. See `LATEST_MODELS.md` for full list and priorities.
+- **Rate Limit Fallback**: Automatically switches to the next available model if the preferred one is rate-limited. Users are notified of fallbacks.
+- **Enhanced Precision**: Configurable temperature and advanced parameters. PDF Chatbot with FastAPI, ChromaDB & Streamlit
 
-## 🚀 **NOW WITH LATEST GEMINI MODELS!**
-### ⚡ Featuring Gemini 2.0 Flash, Experimental 1206, and Enhanced Precision
+## 🚀 **NOW WITH LATEST GEMINI MODELS & RATE LIMIT FALLBACK!**
+### ⚡ Featuring Gemini 2.5 Pro Preview, Gemini 2.0 Flash, Experimental 1206, and Enhanced Precision
+### 🚦 Robust handling of API rate limits with automatic model fallback.
 
 ## 🎥 Watch the Tutorial
 
@@ -10,7 +14,8 @@
 This project is a cutting-edge **Retrieval-Augmented Generation (RAG)** application that allows users to upload PDF documents and chat with an AI assistant powered by the **latest Gemini models**. It features a microservice architecture with a decoupled **FastAPI backend** and **Streamlit frontend**, using **ChromaDB** as the vector store and **Google's latest Gemini models** for superior performance and precision.
 
 ### 🔥 Latest Features
-- **Latest Gemini Models**: Gemini 2.0 Flash, Experimental 1206, 1121, and more
+- **Latest Gemini Models**: `models/gemini-2.5-pro-preview-0325` (Top Priority), Gemini 2.0 Flash, Experimental 1206, 1121, and more. See `LATEST_MODELS.md` for full list and priorities.
+- **Rate Limit Fallback**: Automatically switches to the next available model if the preferred one is rate-limited. Users are notified of fallbacks.
 - **Enhanced Precision**: Configurable temperature and advanced parameters
 - **OCR Support**: Process both text-based and scanned PDFs
 - **Model Selection UI**: Choose the best model for your use case
@@ -83,10 +88,10 @@ cd ragbot
 cd server
 python3 -m venv venv
 source venv/bin/activate
-pip3 install -r requirements.txt
+pip3 install -r requirements.txt # Installs all dependencies including google-api-core for rate limit handling
 
-# Set your Groq API Key
-echo "GROQ_API_KEY=your_key_here" > .env
+# Set your Gemini API Key (IMPORTANT: Name changed from GROQ_API_KEY)
+echo "GEMINI_API_KEY=your_key_here" > .env
 
 # Run the FastAPI server
 uvicorn main:app --reload

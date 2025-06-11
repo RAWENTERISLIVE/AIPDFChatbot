@@ -28,6 +28,7 @@ python-dotenv
 # Typing & Utilities
 pydantic
 requests
+google-api-core # For handling Google API exceptions like rate limits
 
 # Logging (optional but recommended)
 loguru

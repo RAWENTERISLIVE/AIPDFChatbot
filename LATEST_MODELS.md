@@ -1,45 +1,67 @@
-# 🚀 Latest Gemini Models Integration
+# 🚀 Latest Gemini Models Integration & Rate Limit Handling
 
 ## Overview
-RagBot now supports the latest cutting-edge Gemini models with enhanced precision and performance for RAG (Retrieval-Augmented Generation) applications.
+RagBot now supports the latest cutting-edge Gemini models with enhanced precision and performance for RAG (Retrieval-Augmented Generation) applications. It also features a robust rate limit handling mechanism with model fallback.
 
-## 🤖 Available Models
+## 🤖 Available Models (Prioritized)
 
-### 1. **Gemini 2.0 Flash (Experimental)** ⚡ Fastest
-- **Model ID**: `gemini-2.0-flash-exp`
+The system will attempt to use models in the following order if the initially requested model (or the top priority model if none is specified) encounters a rate limit:
+
+### 1. **Gemini 2.5 Pro Preview (New)** 🏆 Top Priority
+- **Model ID**: `models/gemini-2.5-pro-preview-03-25`
+- **Priority**: 1
+- **Release**: March 2025 (Preview)
+- **Description**: Next-generation model with highest quota and latest features.
+- **Best For**: Complex problem-solving, creative content generation, in-depth analysis, cutting-edge applications.
+- **Performance**: State-of-the-art, offering significant improvements over previous versions.
+
+### 2. **Gemini 2.0 Flash (Experimental)** ⚡ Fastest
+- **Model ID**: `models/gemini-2.0-flash-exp`
+- **Priority**: 2
 - **Release**: December 2024
-- **Description**: Latest multimodal model with enhanced reasoning and flash speed
-- **Best For**: General use, reasoning, coding, multimodal tasks
-- **Performance**: Fastest response times with maintained quality
+- **Description**: Latest multimodal model with enhanced reasoning and flash speed.
+- **Best For**: General use, reasoning, coding, multimodal tasks.
+- **Performance**: Fastest response times with maintained quality.
 
-### 2. **Gemini Experimental 1206** 🎯 Most Precise
-- **Model ID**: `gemini-exp-1206`
+### 3. **Gemini 1.5 Pro (Latest)** 🛡️ Most Stable
+- **Model ID**: `gemini-1.5-pro-latest`
+- **Priority**: 3
 - **Release**: December 2024
-- **Description**: Advanced experimental model with improved capabilities and precision
-- **Best For**: Complex reasoning, analysis, precision tasks
-- **Performance**: Highest precision for critical analysis
-- **Default**: This is the default model for new queries
+- **Description**: Latest stable version of Gemini 1.5 Pro with improved capabilities.
+- **Best For**: General use, reliable responses, production.
+- **Performance**: Most stable and reliable.
 
-### 3. **Gemini Experimental 1121** 📊 Analytical
-- **Model ID**: `gemini-exp-1121`
-- **Release**: November 2024
-- **Description**: Enhanced experimental model for precision tasks and deep analysis
-- **Best For**: Precision, analysis, research
-- **Performance**: Optimized for analytical tasks
+### 4. **Gemini 1.5 Flash (Latest)** ⚡ Speed Optimized
+- **Model ID**: `gemini-1.5-flash-latest`
+- **Priority**: 4
+- **Release**: December 2024
+- **Description**: Latest stable version of Gemini 1.5 Flash with enhanced speed.
+- **Best For**: Speed, efficiency, quick tasks.
+- **Performance**: Optimized for speed.
 
-### 4. **Gemini 1.5 Pro** 🛡️ Most Stable
-- **Model ID**: `gemini-1.5-pro`
+### 5. **Gemini 1.5 Pro** 🛡️ Stable
+- **Model ID**: `models/gemini-1.5-pro`
+- **Priority**: 5
 - **Release**: May 2024
-- **Description**: Stable high-performance model with proven reliability
-- **Best For**: General use, reliable responses, production
-- **Performance**: Most stable and reliable
+- **Description**: Stable high-performance model with proven reliability.
+- **Best For**: General use, reliable responses, production.
+- **Performance**: Stable and reliable.
 
-### 5. **Gemini 1.5 Flash** ⚡ Speed Optimized
-- **Model ID**: `gemini-1.5-flash`
+### 6. **Gemini 1.5 Flash** ⚡ Fast
+- **Model ID**: `models/gemini-1.5-flash`
+- **Priority**: 6
 - **Release**: May 2024
-- **Description**: Fast and efficient model optimized for quick responses
-- **Best For**: Speed, efficiency, quick tasks
-- **Performance**: Optimized for speed
+- **Description**: Fast and efficient model optimized for quick responses.
+- **Best For**: Speed, efficiency, quick tasks.
+- **Performance**: Optimized for speed.
+
+## 🚦 Rate Limit Handling & Model Fallback
+
+- **Automatic Fallback**: If the selected Gemini model (or the highest priority model if none is specified) hits a rate limit (HTTP 429 error), the system will automatically attempt to use the next available model in the priority list.
+- **Retry Mechanism**: A short delay is introduced before retrying with the next model to allow transient issues to resolve.
+- **User Notification**:
+    - If a fallback occurs, the user will be notified which model was ultimately used.
+    - If all models become unavailable due to persistent rate limits or other issues, the user will receive a message indicating that the service is temporarily unavailable.
 
 ## 🎛️ Enhanced Configuration
 
@@ -53,7 +75,7 @@ RagBot now supports the latest cutting-edge Gemini models with enhanced precisio
 - **Top-P**: 0.8 (nucleus sampling for quality)
 - **Top-K**: 40 (diversity control)
 - **Max Tokens**: 8192 per model
-- **Enhanced Retrieval**: k=5, fetch_k=10
+- **Enhanced Retrieval**: k=5 documents per query
 
 ## 🔧 API Enhancements
 
@@ -124,6 +146,7 @@ GEMINI_API_KEY=your_gemini_api_key_here
 
 | Model | Speed | Precision | Stability | Best For |
 |-------|-------|-----------|-----------|----------|
+| Gemini 2.5 Pro Preview | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | Complex tasks, creative content |
 | Gemini 2.0 Flash Exp | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐ | Fast general tasks |
 | Gemini Exp 1206 | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | Critical analysis |
 | Gemini Exp 1121 | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | Research tasks |

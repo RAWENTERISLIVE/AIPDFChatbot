@@ -36,13 +36,74 @@ async def catch_exception_middleware(request:Request,call_next):
 @app.post("/upload_pdfs/")
 async def upload_pdfs(files:List[UploadFile]=File(...)):
     try:
-        logger.info(f"recieved {len(files)} files")
+        logger.info(f"Received {len(files)} files for processing")
+        
+        # Validate files
+        if not files:
+            return JSONResponse(status_code=400, content={"error": "No files provided"})
+        
+        # Check file types
+        invalid_files = [f.filename for f in files if not f.filename.lower().endswith('.pdf')]
+        if invalid_files:
+            return JSONResponse(
+                status_code=400, 
+                content={"error": f"Invalid file types detected. Only PDF files are allowed: {invalid_files}"}
+            )
+        
+        logger.info("Starting vectorstore processing...")
         load_vectorstore(files)
-        logger.info("documents added to chroma")
-        return {"message":"Files processed and vectorstore updated"}
+        logger.info("Documents successfully added to chroma vectorstore")
+        
+        return {
+            "message": f"Successfully processed {len(files)} PDF files and updated vectorstore",
+            "files_processed": [f.filename for f in files]
+        }
+        
+    except ValueError as ve:
+        # Handle specific validation errors (e.g., no documents loaded, no text extracted)
+        logger.warning(f"Validation error during PDF upload: {ve}")
+        return JSONResponse(
+            status_code=400, 
+            content={
+                "error": f"Document processing error: {str(ve)}",
+                "suggestion": "Please ensure your PDFs contain readable text or images with text."
+            }
+        )
+        
     except Exception as e:
-        logger.exception("Error during pdf upload")
-        return JSONResponse(status_code=500,content={"error":str(e)})
+        error_msg = str(e)
+        logger.exception("Error during PDF upload")
+        
+        # Provide specific guidance for rate limit errors
+        if "429" in error_msg or "Resource has been exhausted" in error_msg or "rate limit" in error_msg.lower():
+            return JSONResponse(
+                status_code=429, 
+                content={
+                    "error": "Rate limit exceeded for Gemini API",
+                    "message": "Please wait a few minutes before uploading more files. The system will automatically retry with alternative models.",
+                    "suggestion": "Consider uploading fewer files at once or wait for the rate limit to reset."
+                }
+            )
+        
+        # Provide specific guidance for API key errors
+        if "api" in error_msg.lower() and ("key" in error_msg.lower() or "authentication" in error_msg.lower()):
+            return JSONResponse(
+                status_code=401, 
+                content={
+                    "error": "API authentication error",
+                    "message": "There was an issue with the Gemini API configuration.",
+                    "suggestion": "Please check that your GEMINI_API_KEY is properly configured."
+                }
+            )
+        
+        # Generic error response
+        return JSONResponse(
+            status_code=500, 
+            content={
+                "error": f"An error occurred while processing the files: {error_msg}",
+                "suggestion": "Please try again. If the problem persists, check your files and API configuration."
+            }
+        )
 
 
 @app.post("/ask/")

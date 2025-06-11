@@ -75,3 +75,9 @@ source venv/bin/activate
 streamlit run app.py
 ```
 Open your browser and navigate to [http://localhost:8501]
+
+cd server
+python3 -m venv venv
+source venv/bin/activate
+pip3 install -r requirements.txt
+uvicorn main:app --reload

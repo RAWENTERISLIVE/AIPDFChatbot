@@ -1,0 +1,92 @@
+name: Bug Report
+description: Report a bug or issue with the AI PDF Chatbot
+title: "[BUG] "
+labels: ["bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug! 🐛
+        
+        Please fill out the information below to help us understand and fix the issue.
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Pre-submission Checklist
+      description: Please verify these items before submitting
+      options:
+        - label: I have searched existing issues to avoid duplicates
+          required: true
+        - label: I have read the troubleshooting section in README.md
+          required: true
+        - label: I have run `./validate-release.sh` to check my installation
+          required: true
+
+  - type: textarea
+    id: bug-description
+    attributes:
+      label: Bug Description
+      description: A clear and concise description of what the bug is
+      placeholder: Describe what happened and what you expected to happen
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction-steps
+    attributes:
+      label: Steps to Reproduce
+      description: Step-by-step instructions to reproduce the issue
+      placeholder: |
+        1. Run ./start.sh
+        2. Upload a PDF file
+        3. Ask a question
+        4. See error
+    validations:
+      required: true
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating System
+      description: What operating system are you using?
+      options:
+        - macOS (Intel)
+        - macOS (Apple Silicon/M1/M2)
+        - Linux
+        - Windows
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: os-version
+    attributes:
+      label: OS Version
+      description: Your operating system version (e.g., macOS 13.4, Ubuntu 22.04)
+      placeholder: e.g., macOS 14.0
+    validations:
+      required: true
+
+  - type: textarea
+    id: status-output
+    attributes:
+      label: Status Output
+      description: Please run `./status.sh` and paste the output here
+      placeholder: Paste the output of ./status.sh here
+      render: bash
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Log Files
+      description: Please include relevant log files from the logs/ directory
+      placeholder: Paste relevant log entries here (logs/server.log, logs/client.log)
+      render: text
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Any additional information that might help diagnose the issue
+      placeholder: Screenshots, configuration details, etc.

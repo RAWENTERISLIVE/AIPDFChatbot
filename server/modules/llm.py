@@ -22,16 +22,6 @@ AVAILABLE_MODELS: Dict[str, Dict[str, Any]] = {
         "release": "2025-03",
         "priority": 1 # Highest priority
     },
-    "models/gemini-2.5-flash-preview-05-20": {
-        "name": "Gemini 2.5 Flash (Experimental)",
-        "description": "Latest multimodal model with enhanced reasoning and flash speed",
-        "temperature_range": (0.0, 2.0),
-        "max_tokens": 8192,
-        "best_for": ["general", "reasoning", "coding", "multimodal"],
-        "performance": "⚡ Fastest",
-        "release": "2024-12",
-        "priority": 2
-    },
     "gemini-1.5-pro-latest": {
         "name": "Gemini 1.5 Pro (Latest)",
         "description": "Latest stable version of Gemini 1.5 Pro with improved capabilities",
@@ -61,16 +51,7 @@ AVAILABLE_MODELS: Dict[str, Dict[str, Any]] = {
         "performance": "🛡️ Stable",
         "release": "2024-05",
         "priority": 5
-    },
-    "models/gemini-1.5-flash": {
-        "name": "Gemini 1.5 Flash", 
-        "description": "Fast and efficient model optimized for quick responses",
-        "temperature_range": (0.0, 2.0),
-        "max_tokens": 8192,
-        "best_for": ["speed", "efficiency", "quick_tasks"],
-        "performance": "⚡ Fast",
-        "release": "2024-05",
-        "priority": 6
+    }
     }
 }
 

@@ -1,0 +1,97 @@
+name: Feature Request
+description: Suggest a new feature or enhancement for the AI PDF Chatbot
+title: "[FEATURE] "
+labels: ["enhancement", "needs-discussion"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a new feature! 🚀
+        
+        Help us understand what you'd like to see added or improved.
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Pre-submission Checklist
+      description: Please verify these items before submitting
+      options:
+        - label: I have searched existing issues to avoid duplicates
+          required: true
+        - label: I have reviewed the current feature set in the README
+          required: true
+        - label: This is a feature request, not a bug report
+          required: true
+
+  - type: textarea
+    id: feature-description
+    attributes:
+      label: Feature Description
+      description: A clear and concise description of the feature you'd like
+      placeholder: Describe the feature you'd like to see added
+    validations:
+      required: true
+
+  - type: textarea
+    id: use-case
+    attributes:
+      label: Use Case
+      description: Describe your use case and why this feature would be valuable
+      placeholder: |
+        What problem does this solve?
+        How would you use this feature?
+        Who else might benefit from this?
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Feature Category
+      description: What type of feature is this?
+      options:
+        - User Interface (UI/UX)
+        - Performance
+        - New AI Models
+        - File Processing
+        - System Integration
+        - Documentation
+        - API/Backend
+        - Cross-platform Support
+        - Security
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority Level
+      description: How important is this feature to you?
+      options:
+        - Low (Nice to have)
+        - Medium (Would improve workflow)
+        - High (Critical for my use case)
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-solution
+    attributes:
+      label: Proposed Solution
+      description: If you have ideas on how to implement this, please share
+      placeholder: Any thoughts on implementation, design, or approach?
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternative Solutions
+      description: Any alternative solutions or workarounds you've considered
+      placeholder: What alternatives have you tried or considered?
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Any additional information, mockups, or examples
+      placeholder: Screenshots, mockups, links to similar features, etc.

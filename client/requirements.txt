@@ -1,2 +1,12 @@
+# Frontend Framework
 streamlit
 watchdog
+
+# HTTP Requests
+requests
+
+# File Handling
+python-multipart
+
+# Utilities
+python-dotenv

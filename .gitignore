@@ -192,3 +192,25 @@ cython_debug/
 #  refer to https://docs.cursor.com/context/ignore-files
 .cursorignore
 .cursorindexingignore
+
+# IMPORTANT: Environment Variables (Never commit API keys!)
+server/.env
+.env
+*.env
+
+# Application Logs and Runtime Files
+logs/
+*.log
+*.pid
+
+# ChromaDB Database (User data)
+server/chroma_store/
+chroma_store/
+
+# Uploaded Files (User documents)
+server/uploaded_pdfs/
+uploaded_pdfs/
+
+# Virtual Environments
+server/venv/
+client/venv/

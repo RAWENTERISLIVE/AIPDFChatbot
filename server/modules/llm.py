@@ -12,14 +12,14 @@ GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
 
 # Latest Gemini models with their capabilities and priority (lower is higher)
 AVAILABLE_MODELS: Dict[str, Dict[str, Any]] = {
-    "models/gemini-2.5-pro-preview-06-05": { # Corrected model name
+    "gemini-2.5-pro": { # Corrected model name
         "name": "Gemini 2.5 Pro Preview",
         "description": "Next-generation model with highest quota and latest features",
         "temperature_range": (0.0, 2.0),
         "max_tokens": 8192,
         "best_for": ["complex_reasoning", "coding", "multimodal", "high_volume"],
         "performance": "🚀 Top Tier",
-        "release": "2025-03",
+        "release": "2025-06",
         "priority": 1 # Highest priority
     },
     "gemini-1.5-pro-latest": {
@@ -32,26 +32,25 @@ AVAILABLE_MODELS: Dict[str, Dict[str, Any]] = {
         "release": "2024-12",
         "priority": 3
     },
-    "gemini-1.5-flash-latest": {
-        "name": "Gemini 1.5 Flash (Latest)",
+    "gemini-2.5-flash": {
+        "name": "Gemini 2.5 Flash (Latest)",
         "description": "Latest stable version of Gemini 1.5 Flash with enhanced speed",
         "temperature_range": (0.0, 2.0),
         "max_tokens": 8192,
         "best_for": ["speed", "efficiency", "quick_tasks"],
         "performance": "⚡ Speed Optimized",
-        "release": "2024-12",
+        "release": "2025-06",
         "priority": 4
     },
-    "models/gemini-1.5-pro": {
+    "gemini-1.5-flash": {
         "name": "Gemini 1.5 Pro",
         "description": "Stable high-performance model with proven reliability",
         "temperature_range": (0.0, 2.0),
         "max_tokens": 8192,
         "best_for": ["general", "reliable", "production"],
         "performance": "🛡️ Stable",
-        "release": "2024-05",
+        "release": "2024-12",
         "priority": 5
-    }
     }
 }
 
